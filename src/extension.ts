@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ReviewBridgePoller } from './bridge/ReviewBridgePoller';
+import { ReviewBridgeServer } from './bridge/server';
 import { createDemoChangeSet } from './demoChangeSet';
 import { ReviewPanel } from './ReviewPanel';
 import type { ChangeSet, ShowReviewOptions } from './types';
@@ -22,7 +22,9 @@ export function activate(context: vscode.ExtensionContext) {
 		}),
 	);
 
-	context.subscriptions.push(new ReviewBridgePoller(context));
+	const bridgeServer = new ReviewBridgeServer(context);
+	context.subscriptions.push(bridgeServer);
+	void bridgeServer.start();
 }
 
 export function deactivate() {}

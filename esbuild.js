@@ -41,7 +41,6 @@ async function main() {
 		plugins: [esbuildProblemMatcherPlugin],
 	});
 
-	const bridgeServerCtx = await createNodeContext('src/bridge/server.ts', 'dist/bridge/server.js');
 	const bridgeCliCtx = await createNodeContext('src/bridge/cli.ts', 'dist/bridge/cli.js');
 
 	copyWebviewAssets();
@@ -49,16 +48,13 @@ async function main() {
 	if (watch) {
 		await extensionCtx.watch();
 		await webviewCtx.watch();
-		await bridgeServerCtx.watch();
 		await bridgeCliCtx.watch();
 	} else {
 		await extensionCtx.rebuild();
 		await webviewCtx.rebuild();
-		await bridgeServerCtx.rebuild();
 		await bridgeCliCtx.rebuild();
 		await extensionCtx.dispose();
 		await webviewCtx.dispose();
-		await bridgeServerCtx.dispose();
 		await bridgeCliCtx.dispose();
 	}
 }

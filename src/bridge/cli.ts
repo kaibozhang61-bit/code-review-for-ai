@@ -38,7 +38,10 @@ async function openFromFile(filePath: string | undefined) {
 async function openChangeSet(changeSet: ChangeSet) {
 	const session = await createBridgeSession(changeSet);
 	if (!session) {
-		throw new Error(`Could not reach the AI Review bridge at ${DEFAULT_BRIDGE_URL}.`);
+		throw new Error(
+			`Could not reach the AI Review bridge at ${DEFAULT_BRIDGE_URL}. ` +
+				'Make sure the AI Review extension is installed and VS Code is running.',
+		);
 	}
 
 	console.log(`Queued review session ${session.sessionId} for change set "${changeSet.id}".`);

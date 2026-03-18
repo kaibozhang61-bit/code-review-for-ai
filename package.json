@@ -1,8 +1,17 @@
 {
-  "name": "ai-review",
+  "name": "kaiboz",
   "displayName": "AI Review",
   "description": "Review AI code changes like a PR diff.",
   "version": "0.0.1",
+  "publisher": "kaiboz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaibozhang61-bit/code-review-for-ai.git"
+  },
+  "homepage": "https://github.com/kaibozhang61-bit/code-review-for-ai",
+  "bugs": {
+    "url": "https://github.com/kaibozhang61-bit/code-review-for-ai/issues"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -31,7 +40,6 @@
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "bridge:start": "node dist/bridge/server.js",
     "bridge:open": "node dist/bridge/cli.js open",
     "bridge:demo": "node dist/bridge/cli.js demo",
     "bridge:status": "node dist/bridge/cli.js status",

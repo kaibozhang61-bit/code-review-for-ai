@@ -21,10 +21,6 @@ export interface CreateSessionResponse {
 	status: BridgeSessionStatus;
 }
 
-export interface ClaimedSessionResponse {
-	session: BridgeSession;
-}
-
 export interface SessionStatusResponse {
 	session: BridgeSession;
 }

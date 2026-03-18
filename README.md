@@ -58,7 +58,6 @@ interface ReviewResult {
 │   ├── diffUtils.ts
 │   ├── reviewState.ts
 │   ├── bridge/
-│   │   ├── ReviewBridgePoller.ts
 │   │   ├── cli.ts
 │   │   ├── client.ts
 │   │   ├── protocol.ts
@@ -130,20 +129,11 @@ On submit, the extension:
 
 ## Local Bridge For E2E Testing
 
-This repo also includes a lightweight local bridge so a CLI can queue a review and the extension can pick it up automatically.
-
-### Start The Bridge
-
-From the project root:
-
-```bash
-npm run compile
-npm run bridge:start
-```
+This repo also includes a lightweight local bridge interface so a CLI can queue a review and the installed extension can pick it up automatically.
 
 ### Start The Extension Host
 
-In VS Code, run `Run Extension` so the Extension Development Host is open. The extension activates on startup and polls the bridge for queued reviews.
+In VS Code, run `Run Extension` so the Extension Development Host is open. The extension starts the bridge on activation and listens on `127.0.0.1:47831`.
 
 ### Queue A Demo Review
 
@@ -155,7 +145,7 @@ npm run bridge:demo
 
 This prints a bridge `sessionId`.
 
-If the bridge and extension host are both running, the review panel should open automatically in the Extension Development Host window.
+If the Extension Development Host is running, the review panel should open automatically in that window.
 
 ### Fetch The Submitted Result
 
@@ -222,7 +212,6 @@ To publish to the VS Code Marketplace later, you will also need:
 npm run check-types
 npm run compile
 npm run package
-npm run bridge:start
 npm run bridge:demo
 npm run bridge:status -- <sessionId>
 npm run bridge:wait -- <sessionId>
